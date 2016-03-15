@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<!-- Zhen Xiao -->
+<html>
+	<head>
+		<title>A Card Game</title>
+		<script src = "utilities.js"></script>
+		<script src = "cardengine.js"></script>
+		<style></style>
+		<script>
+			function initialize(){
+				jCardsPlace = document.getElementById("cards-place");
+				jCardRow = document.getElementsByTagName("td");
+				jDeck = generateStandardDeck();
+				doubleSwapShuffle(jDeck);
+				displayDeck(jDeck, "cardimages/", jCardsPlace);
+			}
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<div id = "cards-place"></div>
+		<table id = "card-table">
+			<tr id = "card-row">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<button onclick = "replaceCards();">Click here to submit and replace the cards</button>
+		<button onclick = "restartGame();">Click here to restart the game</button>
+	</body>
+</html>
