@@ -197,7 +197,7 @@ function displayDeck(deck, path, htmlElement)
 
 function generateDeckWithPointValues(pointValue){
 	var deck = [];
-	if (pointvalue.length != 13)
+	if (pointValue.length != 13)
 	return deck;
 	
 	for (var r = ACE; r <= KING; r++)

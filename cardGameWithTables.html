@@ -8,28 +8,27 @@
 		<style></style>
 		<script>
 			function initialize(){
-				jCardsPlace = document.getElementById("cards-place");
+				generateDeckWithPointValues([1,2,3,4,5,6,7,8,9,10,0,0,0])
 				jCardTable = document.getElementById("card-table");
+				jCardRow = document.getElementById("card-row");
 				jDeck = generateStandardDeck();
 				doubleSwapShuffle(jDeck);
-				displayDeck(jDeck, "cardimages/", jCardsPlace);
+				BOARD_SIZE = 9;
+				cardsOnBoard = [];
+				selected = [];
+				
+				for(var i = 0; i<BOARD_SIZE; i++){
+					var theTD = jCardRow.insertCell(i);
+					cardsOnBoard.push(dealCard(jDeck));
+					theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />";
+					selected.push(false);
+				}
 			}
 		</script>
 	</head>
 	<body onload = "initialize();">
-		<div id = "cards-place"></div>
 		<table id = "card-table">
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<tr id = "card-row"></tr>
 		</table>
 		<button onclick = "replaceCards();">Click here to submit and replace the cards</button>
 		<button onclick = "restartGame();">Click here to restart the game</button>
