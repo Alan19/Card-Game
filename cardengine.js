@@ -164,7 +164,7 @@ function peekCard(deck, idx)
 }
 
 function dealCard(deck){
-	return deck.unshift;
+	return deck.shift();
 }
 
 /*
