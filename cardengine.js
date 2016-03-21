@@ -210,10 +210,69 @@ function generateDeckWithPointValues(pointValue){
 			var card = new Object();
 			card.rank = r;
 			card.suit = s;
-			card.pointValue = pointValue[r-1];
+			card.pointValues = pointValue[r-1];
 			card.cardImg = r + "-" + s + ".png";
 			deck.push(card);
 		}
 }		
 
+function selectUnselect(tD){
+	for(var i = 0; i < BOARD_SIZE; i++){
+		if(jCardRow.cells[i] == tD){
+			selected[i] = !selected[i];
+			if(selected[i]){
+				tD.style.border = "thick solid green";
+			}
+			else{
+				tD.style.border = "none";
+			}
+		}
+	}
+}
+
+function getIndexesOfCardsOnBoard(){
+	var selectedIndexes = [];
+	
+	for(var i = 0; i < BOARD_SIZE; i++){
+		if(cardsOnBoard[i] != null){
+			selectedIndexes.push[i];
+		}
+	}
+	
+	return selectedIndexes;
+}
+
+function getSelectedIndexes(){
+	var selectedIndexes = [];
+	
+	for(var i = 0; i < BOARD_SIZE; i++){
+		if(selected[i] && cardsOnBoard[i] != null){
+			selectedIndexes.push(i);
+		}
+	}
+}
+
+function containsJQK(selectedIndexes){
+	var foundJack = false;
+	var foundQueen = false;
+	var foundKing = false;
+	for(var i = 0; i < selectedIndex.length; i++){
+		if(cardsOnBoard[selectedIndexes[i]].rank == JACK){
+			foundJack = true;
+		}
+		else if(cardsOnBoard[selectedIndexes[i]].rank == QUEEN){
+			foundQueen = true;
+		}
+		else if(cardsOnBoard[selectedIndexes[i]].rank == KING){
+			foundKing = true;
+		}
+	}
+	/*if(foundJack && foundQueen && foundKing){
+		return true;
+	}
+	else{
+		return false;
+	}*/
+	return foundJack && foundQueen && foundKing;
+}
 
