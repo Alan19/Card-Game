@@ -197,10 +197,11 @@ function displayDeck(deck, path, htmlElement)
 
 function generateDeckWithPointValues(pointValue){
 	var deck = [];
-	if (pointValue.length != 13)
-	return deck;
+	if (pointValue.length != 13){
+		return deck;
+	}
 	
-	for (var r = ACE; r <= KING; r++)
+	for (var r = ACE; r <= KING; r++){
 		for (var s = CLUB; s <= SPADE; s++){
 			/*
 				By declaring the card as an empty object, we can begin to create member variables (rank, suit, and cardImg) dynamically, assigning them values on the fly.
@@ -214,6 +215,8 @@ function generateDeckWithPointValues(pointValue){
 			card.cardImg = r + "-" + s + ".png";
 			deck.push(card);
 		}
+	}
+	return deck;
 }		
 
 function selectUnselect(tD){
@@ -256,7 +259,8 @@ function containsJQK(selectedIndexes){
 	var foundJack = false;
 	var foundQueen = false;
 	var foundKing = false;
-	for(var i = 0; i < selectedIndex.length; i++){
+	
+	for(var i = 0; i < selectedIndexes.length; i++){
 		if(cardsOnBoard[selectedIndexes[i]].rank == JACK){
 			foundJack = true;
 		}
@@ -276,3 +280,15 @@ function containsJQK(selectedIndexes){
 	return foundJack && foundQueen && foundKing;
 }
 
+function containsPairSum11(selectedIndexes){
+	containsSum11 = false;
+	
+	for(var i = 0; i < selectedIndexes.length-1; i++){
+		for(var j = i + 1; j < selectedIndexes.length; j++){
+			if(cardsOnBoard[selectedIndexes[i]].pointValues + cardsOnBoard[selectedIndexes[j]].pointValues == 11){
+				return true;
+			}
+		}
+	}
+	return false;
+}

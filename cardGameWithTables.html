@@ -8,10 +8,10 @@
 		<style></style>
 		<script>
 			function initialize(){
-				generateDeckWithPointValues([1,2,3,4,5,6,7,8,9,10,0,0,0])
+				pts = [1,2,3,4,5,6,7,8,9,10,0,0,0];
 				jCardTable = document.getElementById("card-table");
 				jCardRow = document.getElementById("card-row");
-				jDeck = generateStandardDeck();
+				jDeck = generateDeckWithPointValues(pts);
 				doubleSwapShuffle(jDeck);
 				BOARD_SIZE = 9;
 				cardsOnBoard = [];
@@ -21,6 +21,9 @@
 					var theTD = jCardRow.insertCell(i);
 					cardsOnBoard.push(dealCard(jDeck));
 					theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />";
+					theTD.setAttribute("onclick", "selectUnselect(this)");
+					theTD.style.cursor = "pointer";
+					theTD.style.margin = "25px";
 					//console.log("<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />");
 					selected.push(false);
 				}
