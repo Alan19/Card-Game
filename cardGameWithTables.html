@@ -5,6 +5,7 @@
 		<title>A Card Game</title>
 		<script src = "utilities.js"></script>
 		<script src = "cardengine.js"></script>
+		<link rel = "stylesheet" href = "Card Game Style.css" />
 		<style></style>
 		<script>
 			function initialize(){
@@ -20,7 +21,7 @@
 				for(var i = 0; i<BOARD_SIZE; i++){
 					var theTD = jCardRow.insertCell(i);
 					cardsOnBoard.push(dealCard(jDeck));
-					theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />";
+					theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />" + "<div>" + i + "</div>";
 					theTD.setAttribute("onclick", "selectUnselect(this)");
 					theTD.style.cursor = "pointer";
 					theTD.style.margin = "25px";
@@ -31,6 +32,8 @@
 		</script>
 	</head>
 	<body onload = "initialize();">
+		<h1>Card Game</h1>
+		<p>Choose cards whose numbers add up to 11 or a Jack, King and Queen to clear them from the board. Clear add cards from the deck to win the game.</p>
 		<table id = "card-table">
 			<tr id = "card-row"></tr>
 		</table>

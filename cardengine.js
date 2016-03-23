@@ -224,10 +224,10 @@ function selectUnselect(tD){
 		if(jCardRow.cells[i] == tD){
 			selected[i] = !selected[i];
 			if(selected[i]){
-				tD.style.border = "thick solid green";
+				tD.style.filter = "invert(100%)";
 			}
 			else{
-				tD.style.border = "none";
+				tD.style.filter = "none";
 			}
 		}
 	}
@@ -291,4 +291,20 @@ function containsPairSum11(selectedIndexes){
 		}
 	}
 	return false;
+}
+
+function isLegalSelection(selectedIndexes){
+	if(selectedIndexes.length == 3 && containsJQK(selectedIndexes)){
+		return true;
+	}
+	else if(selectedIndexes.length == 2 &&containsPairSum11(selectedIndexes)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function anotherPlayIsPossible(selectedIndexes){
+	return (containsPairSum11(selectedIndexes) || containsJQK(selectedIndexes));
 }
