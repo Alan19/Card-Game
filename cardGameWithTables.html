@@ -25,6 +25,8 @@
 					theTD.setAttribute("onclick", "selectUnselect(this)");
 					theTD.style.cursor = "pointer";
 					theTD.style.margin = "25px";
+					theTD.style.WebkitFilter="invert(0%)";
+
 					//console.log("<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />");
 					selected.push(false);
 				}
@@ -37,7 +39,10 @@
 		<table id = "card-table">
 			<tr id = "card-row"></tr>
 		</table>
-		<button onclick = "replaceCards();">Click here to submit and replace the cards</button>
-		<button onclick = "restartGame();">Click here to restart the game</button>
+		<div>
+			<button onclick = "replaceCards();">Click here to submit and replace the cards</button>
+			<button onclick = "restartGame();">Click here to restart the game</button>
+		</div>
+		<div id = "game-status"></div>
 	</body>
 </html>

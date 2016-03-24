@@ -224,10 +224,10 @@ function selectUnselect(tD){
 		if(jCardRow.cells[i] == tD){
 			selected[i] = !selected[i];
 			if(selected[i]){
-				tD.style.filter = "invert(100%)";
+				tD.style.WebkitFilter="invert(100%)";
 			}
 			else{
-				tD.style.filter = "none";
+				tD.style.WebkitFilter="invert(0%)";
 			}
 		}
 	}
@@ -307,4 +307,28 @@ function isLegalSelection(selectedIndexes){
 
 function anotherPlayIsPossible(selectedIndexes){
 	return (containsPairSum11(selectedIndexes) || containsJQK(selectedIndexes));
+}
+
+function replaceCard(index){
+	if(myDeck.length > 0){
+		var theTD = jCardRow.cells[index];
+		cardsOnBoard[index] = dealCard(myDeck);
+		theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />" + "<div>" + i + "</div>";
+		theTD.setAttribute("onclick", "selectUnselect(this)");
+	}
+	else{
+		cardsOnBoard[index] = null;
+		jBoard.cells[index].indexHTML = "<img src = 'cardimages/back-red-75-1' />";
+	}
+	selectUnselect(jCardRow);
+}
+
+function replace(){
+	var selectedIndexes = getSelectedIndexes();
+	if(isLegalSelection(selectedIndexes)){
+		for(var i = 0; i < selectedIndexes.length; i++){
+			replaceCard(selectedIndexes.length[i]);
+		}
+		if(!anotherPlayIsPossible
+	}
 }
