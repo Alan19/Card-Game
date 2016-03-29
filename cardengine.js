@@ -317,13 +317,14 @@ function replaceCard(index){
 		cardsOnBoard[index] = dealCard(jDeck);
 		//console.log(theTD)
 		//console.log("<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />");
-		theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />" + "<div>" + index + "</div>";
+		theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />"/* + "<div>" + index + "</div>"*/;
 		theTD.style.WebkitFilter="invert(0%)";
 		theTD.setAttribute("onclick", "selectUnselect(this)");
 	}
 	else{
 		cardsOnBoard[index] = null;
 		jBoard.cells[index].indexHTML = "<img src = 'cardimages/back-red-75-1.png' />";
+		theTD.style.WebkitFilter="invert(0%)";
 	}
 	selectUnselect(jCardRow);
 }

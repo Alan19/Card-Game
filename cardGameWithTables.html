@@ -24,7 +24,8 @@
 				for(var i = 0; i<BOARD_SIZE; i++){
 					var theTD = jCardRow.insertCell(i);
 					cardsOnBoard.push(dealCard(jDeck));
-					theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />" + "<div>" + i + "</div>";
+					theTD.innerHTML = "<img id = 'card-detail' src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />"/* + "<div>" + i + "</div>"*/;
+					//jCardDetail = document.getElementById("card-detail");
 					theTD.setAttribute("onclick", "selectUnselect(this)");
 					theTD.style.cursor = "pointer";
 					theTD.style.margin = "25px";
@@ -49,6 +50,6 @@
 			<button onclick = "replace();">Click here to submit and replace the cards</button>
 			<button onclick = "restart();">Click here to restart the game</button>
 		</div>
-		<div id = "game-status"></div>
+		<h2 id = "game-status"></h2>
 	</body>
 </html>

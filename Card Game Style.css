@@ -12,5 +12,13 @@ table{
 }
 
 button{
+	width:300px;
+}
+
+body{
+	background-color:#b0d2cf;
+}
+
+p, h2{
 	text-align:center;
 }
