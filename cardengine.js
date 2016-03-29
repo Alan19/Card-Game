@@ -238,7 +238,7 @@ function getIndexesOfCardsOnBoard(){
 	
 	for(var i = 0; i < BOARD_SIZE; i++){
 		if(cardsOnBoard[i] != null){
-			selectedIndexes.push[i];
+			selectedIndexes.push(i);
 		}
 	}
 	
@@ -249,10 +249,12 @@ function getSelectedIndexes(){
 	var selectedIndexes = [];
 	
 	for(var i = 0; i < BOARD_SIZE; i++){
-		if(selected[i] && cardsOnBoard[i] != null){
+		if(selected[i] && (cardsOnBoard[i] != null)){
 			selectedIndexes.push(i);
 		}
 	}
+	
+	return selectedIndexes;
 }
 
 function containsJQK(selectedIndexes){
@@ -297,7 +299,7 @@ function isLegalSelection(selectedIndexes){
 	if(selectedIndexes.length == 3 && containsJQK(selectedIndexes)){
 		return true;
 	}
-	else if(selectedIndexes.length == 2 &&containsPairSum11(selectedIndexes)){
+	else if(selectedIndexes.length == 2 && containsPairSum11(selectedIndexes)){
 		return true;
 	}
 	else{
@@ -310,15 +312,18 @@ function anotherPlayIsPossible(selectedIndexes){
 }
 
 function replaceCard(index){
-	if(myDeck.length > 0){
+	if(jDeck.length > 0){
 		var theTD = jCardRow.cells[index];
-		cardsOnBoard[index] = dealCard(myDeck);
-		theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />" + "<div>" + i + "</div>";
+		cardsOnBoard[index] = dealCard(jDeck);
+		//console.log(theTD)
+		//console.log("<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />");
+		theTD.innerHTML = "<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />" + "<div>" + index + "</div>";
+		theTD.style.WebkitFilter="invert(0%)";
 		theTD.setAttribute("onclick", "selectUnselect(this)");
 	}
 	else{
 		cardsOnBoard[index] = null;
-		jBoard.cells[index].indexHTML = "<img src = 'cardimages/back-red-75-1' />";
+		jBoard.cells[index].indexHTML = "<img src = 'cardimages/back-red-75-1.png' />";
 	}
 	selectUnselect(jCardRow);
 }
@@ -327,8 +332,31 @@ function replace(){
 	var selectedIndexes = getSelectedIndexes();
 	if(isLegalSelection(selectedIndexes)){
 		for(var i = 0; i < selectedIndexes.length; i++){
-			replaceCard(selectedIndexes.length[i]);
+			replaceCard(selectedIndexes[i]);
 		}
-		if(!anotherPlayIsPossible
+		selected = [];
+		if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard()) && allNullsOnBoard()){
+			jGameStatus.innerHTML = "You have won the game!";
+		}
+		else if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard()) && !allNullsOnBoard()){
+			jGameStatus.innerHTML = "You have lost the game!";
+		}
+		else{
+			jGameStatus.innerHTML = "";
+		}
 	}
+}
+
+function allNullsOnBoard(){
+	for(var i = 0; i < BOARD_SIZE; i++){
+		if(cardsOnBoard[i] != null){
+			return false;
+		}
+	}
+	return true;
+}
+
+function restart(){
+	jCardRow.innerHTML = "";
+	initialize();
 }

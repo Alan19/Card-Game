@@ -14,6 +14,9 @@
 				jCardRow = document.getElementById("card-row");
 				jDeck = generateDeckWithPointValues(pts);
 				doubleSwapShuffle(jDeck);
+				jGameStatus = document.getElementById("game-status");
+				jGameStatus.innerHTML = "";
+				
 				BOARD_SIZE = 9;
 				cardsOnBoard = [];
 				selected = [];
@@ -40,8 +43,8 @@
 			<tr id = "card-row"></tr>
 		</table>
 		<div>
-			<button onclick = "replaceCards();">Click here to submit and replace the cards</button>
-			<button onclick = "restartGame();">Click here to restart the game</button>
+			<button onclick = "replace();">Click here to submit and replace the cards</button>
+			<button onclick = "restart();">Click here to restart the game</button>
 		</div>
 		<div id = "game-status"></div>
 	</body>
