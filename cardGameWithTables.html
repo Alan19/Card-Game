@@ -33,6 +33,9 @@
 					//console.log("<img src = 'cardimages/" + cardsOnBoard[i].cardImg + "' />");
 					selected.push(false);
 				}
+				if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard())){
+					restart();
+				}
 			}
 		</script>
 	</head>
