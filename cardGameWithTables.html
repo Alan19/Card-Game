@@ -8,6 +8,9 @@
 		<link rel = "stylesheet" href = "Card Game Style.css" />
 		<style></style>
 		<script>
+				wins = 0;
+				losses = 0;
+			
 			function initialize(){
 				pts = [1,2,3,4,5,6,7,8,9,10,0,0,0];
 				jCardTable = document.getElementById("card-table");
@@ -16,6 +19,8 @@
 				doubleSwapShuffle(jDeck);
 				jGameStatus = document.getElementById("game-status");
 				jGameStatus.innerHTML = "";
+				jRecord = document.getElementById("record");
+				jCardsRemaining = document.getElementById("cards-remaining");
 				
 				BOARD_SIZE = 9;
 				cardsOnBoard = [];
@@ -37,7 +42,9 @@
 				if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard())){
 					restart();
 				}
+				updateCardsLeft();
 			}
+			
 		</script>
 	</head>
 	<body onload = "initialize();">
@@ -48,8 +55,10 @@
 		</table>
 		<div>
 			<button onclick = "replace();">Click here to submit and replace the cards</button>
+			<span id = "cards-remaining"></span>
 			<button onclick = "restart();">Click here to restart the game</button>
 		</div>
 		<h2 id = "game-status"></h2>
+		<p id = "record">Wins:0 Losses:0</p>
 	</body>
 </html>

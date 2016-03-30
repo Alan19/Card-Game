@@ -12,7 +12,7 @@ table{
 }
 
 button{
-	width:300px;
+	width:400px;
 }
 
 body{
@@ -21,4 +21,16 @@ body{
 
 p, h2{
 	text-align:center;
+}
+
+td{
+	padding:20px;
+}
+
+p{
+	font:16pt garamond;
+}
+
+h2{
+	font:22pt franklin gothic
 }

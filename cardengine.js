@@ -335,16 +335,24 @@ function replace(){
 		for(var i = 0; i < selectedIndexes.length; i++){
 			replaceCard(selectedIndexes[i]);
 		}
+		updateCardsLeft();
 		selected = [];
 		if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard()) && allNullsOnBoard()){
 			jGameStatus.innerHTML = "You have won the game!";
+			wins += 1;
+			jRecord.innerHTML = "Wins: " + wins + " Losses: " + losses;
 		}
 		else if(!anotherPlayIsPossible(getIndexesOfCardsOnBoard()) && !allNullsOnBoard()){
 			jGameStatus.innerHTML = "You have lost the game!";
+			losses += 1;
+			jRecord.innerHTML = "Wins: " + wins + " Losses: " + losses;
 		}
 		else{
 			jGameStatus.innerHTML = "";
 		}
+	}
+	else{
+		jGameStatus.innerHTML = "Invalid Input";
 	}
 }
 
@@ -360,4 +368,9 @@ function allNullsOnBoard(){
 function restart(){
 	jCardRow.innerHTML = "";
 	initialize();
+}
+
+function updateCardsLeft(){
+	cardsLeft = jDeck.length;
+	jCardsRemaining.innerHTML = jDeck.length;
 }
