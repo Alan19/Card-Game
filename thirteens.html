@@ -12,7 +12,7 @@
 				losses = 0;
 			
 			function initialize(){
-				pts = [1,2,3,4,5,6,7,8,9,10,0,0,0];
+				pts = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 				jCardTable = document.getElementById("card-table");
 				jCardRow = document.getElementById("card-row");
 				jDeck = generateDeckWithPointValues(pts);
@@ -49,12 +49,12 @@
 	</head>
 	<body onload = "initialize();">
 		<h1>Card Game</h1>
-		<p>Choose cards whose numbers add up to 11 or a Jack, King and Queen to clear them from the board. Clear add cards from the deck to win the game.</p>
+		<p>Choose cards whose numbers add up to 13 to clear them from the board. Clear add cards from the deck to win the game.</p>
 		<table id = "card-table">
 			<tr id = "card-row"></tr>
 		</table>
 		<div>
-			<button onclick = "replace();">Click here to submit and replace the cards</button>
+			<button onclick = "replace13();">Click here to submit and replace the cards</button>
 			<span id = "cards-remaining"></span>
 			<button onclick = "restart();">Click here to restart the game</button>
 		</div>

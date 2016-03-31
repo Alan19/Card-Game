@@ -312,8 +312,8 @@ function anotherPlayIsPossible(selectedIndexes){
 }
 
 function replaceCard(index){
+	var theTD = jCardRow.cells[index];
 	if(jDeck.length > 0){
-		var theTD = jCardRow.cells[index];
 		cardsOnBoard[index] = dealCard(jDeck);
 		//console.log(theTD)
 		//console.log("<img src = 'cardimages/" + cardsOnBoard[index].cardImg + "' />");
@@ -323,7 +323,7 @@ function replaceCard(index){
 	}
 	else{
 		cardsOnBoard[index] = null;
-		jBoard.cells[index].indexHTML = "<img src = 'cardimages/back-red-75-1.png' />";
+		theTD.innerHTML = "<img src = 'cardimages/back-red-75-1.png' />";
 		theTD.style.WebkitFilter="invert(0%)";
 	}
 	selectUnselect(jCardRow);
@@ -373,4 +373,57 @@ function restart(){
 function updateCardsLeft(){
 	cardsLeft = jDeck.length;
 	jCardsRemaining.innerHTML = jDeck.length;
+}
+
+function containsPairSum13(selectedIndexes){
+	containsSum11 = false;
+	for(var i = 0; i < selectedIndexes.length-1; i++){
+		if(selectedIndexes.length == 1 && cardsOnBoard[selectedIndexes].rank == KING){
+			return true
+		}
+		for(var j = i + 1; j < selectedIndexes.length; j++){
+			if(cardsOnBoard[selectedIndexes[i]].pointValues + cardsOnBoard[selectedIndexes[j]].pointValues == 13){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function isLegalSelection13(selectedIndexes){
+	//console.log(selectedIndexes);
+	//console.log(selectedIndexes[1]);
+	if((selectedIndexes.length == 2 && containsPairSum13(selectedIndexes)) || (selectedIndexes.length == 1 && cardsOnBoard[selectedIndexes].rank == KING)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function replace13(){
+	var selectedIndexes = getSelectedIndexes();
+	if(isLegalSelection13(selectedIndexes)){
+		for(var i = 0; i < selectedIndexes.length; i++){
+			replaceCard(selectedIndexes[i]);
+		}
+		updateCardsLeft();
+		selected = [];
+		if(!containsPairSum13(getIndexesOfCardsOnBoard()) && allNullsOnBoard()){
+			jGameStatus.innerHTML = "You have won the game!";
+			wins += 1;
+			jRecord.innerHTML = "Wins: " + wins + " Losses: " + losses;
+		}
+		else if((!containsPairSum13(getIndexesOfCardsOnBoard()) ) && !allNullsOnBoard()){
+			jGameStatus.innerHTML = "You have lost the game!";
+			losses += 1;
+			jRecord.innerHTML = "Wins: " + wins + " Losses: " + losses;
+		}
+		else{
+			jGameStatus.innerHTML = "";
+		}
+	}
+	else{
+		jGameStatus.innerHTML = "Invalid Input";
+	}
 }
